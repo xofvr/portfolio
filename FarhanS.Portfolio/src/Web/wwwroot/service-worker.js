@@ -11,17 +11,17 @@ const CACHE_NAME = `farhans-portfolio-${CACHE_VERSION}`;
 // Assets to cache on install
 // Add or remove assets based on your application's needs
 const PRECACHE_ASSETS = [
-  '/',
-  '/index.html',
-  '/css/app.css',
-  '/FarhanS.Portfolio.styles.css',
-  '/lib/bootstrap/dist/css/bootstrap.min.css',
-  '/favicon.png',
-  '/manifest.webmanifest',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/_framework/blazor.webassembly.js',
-  '/service-worker-assets.js'
+  '/portfolio/',
+  '/portfolio/index.html',
+  '/portfolio/css/app.css',
+  '/portfolio/FarhanS.Portfolio.styles.css',
+  '/portfolio/lib/bootstrap/dist/css/bootstrap.min.css',
+  '/portfolio/favicon.png',
+  '/portfolio/manifest.webmanifest',
+  '/portfolio/icon-192.png',
+  '/portfolio/icon-512.png',
+  '/portfolio/_framework/blazor.webassembly.js',
+  '/portfolio/service-worker-assets.js'
 ];
 
 // Define allowed external domains for CSP purposes
