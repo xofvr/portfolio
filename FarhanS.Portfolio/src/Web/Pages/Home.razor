@@ -1,0 +1,594 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Web
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Farhan S. - Full Stack Developer</PageTitle>
+
+<!-- Hero section with padding to account for fixed navbar -->
+<div class="hero-section py-5" style="padding-top: 6rem;">
+    <div class="container">        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">Farhan S.</h1>
+                <h2 class="text-primary">Software Engineer with Data Science Experience</h2>
+                <p class="lead my-4">
+                    Passionate about building impactful solutions with cutting-edge technologies.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="#contact" class="btn btn-primary px-4 py-2">Get In Touch</a>
+                    <a href="#projects" class="btn btn-outline-secondary px-4 py-2">See My Work</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="images/profile.jpeg" alt="Farhan S." class="img-fluid rounded-circle profile-image shadow-lg" 
+                     style="max-width: 300px;" onerror="this.onerror=null; this.src='images/profile-placeholder.jpg';">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content sections -->
+<Virtualize Context="section" ItemsProvider="@GetSectionsAsync">
+    <ItemContent>
+        @if (section == "about")
+        {
+            <!-- About Section -->
+            <section id="about" class="py-5">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="section-title mb-3">About Me</h2>
+                            <div class="section-divider mb-4"></div>
+                            <p class="lead">
+                                Final-year Computer Science student at UWE Bristol with industry experience in software engineering and data science.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <p>
+                                        I'm a final-year Computer Science student at UWE Bristol with practical experience in data science and software development. 
+                                        During my placement year, I worked as an Assistant Data Scientist, upgrading old analytical methods for scientific instruments and exploring generative AI solutions.
+                                    </p>
+                                    <p>
+                                        My skills cover both software development (.NET, Python, web frameworks) and data science (machine learning models, Azure ML). 
+                                        I'm good at bridging the gap between technical and non-technical teams.
+                                    </p>
+                                    <p>
+                                        For my final year project, I'm combining CNN and transformer neural networks to make Computational Fluid Dynamics simulations faster. 
+                                        This includes building a dashboard that visualises how pollution moves around buildings in urban areas, allowing planners to see results without waiting hours for traditional simulations to run.
+                                    </p>
+                                    <div class="mt-4">
+                                        <a href="#contact" class="btn btn-primary me-2">Get In Touch</a>
+                                        <a href="https://www.linkedin.com/in/m-shakeel014/" target="_blank" rel="noopener" class="btn btn-outline-primary">
+                                            <i class="bi bi-linkedin me-1"></i> LinkedIn
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }        else if (section == "experience")
+        {
+            <section id="experience" class="py-5 section-alt-bg">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="section-title mb-3">Experience</h2>
+                            <div class="section-divider mb-4"></div>
+                            <p class="lead">Professional experience in software development and data science</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Assistant Data Scientist Experience -->
+                        <div class="col-lg-6 mb-4">
+                            <div class="card experience-card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="card-title h5">Assistant Data Scientist</h3>
+                                        <span class="badge bg-primary">2023-2024</span>
+                                    </div>
+                                    <h4 class="card-subtitle mb-2 text-muted h6">Instrumentation & Innovation Company</h4>
+                                    <p class="card-text">
+                                        Upgraded analytical methods for scientific instruments and explored generative AI solutions. 
+                                        Built ML model endpoints on Azure and implemented CI/CD pipelines for faster iteration and delivery.
+                                    </p>
+                                    <div class="mt-3">
+                                        <span class="badge location-badge me-1 mb-1">UK</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Current Student Role -->
+                        <div class="col-lg-6 mb-4">
+                            <div class="card experience-card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="card-title h5">Computer Science Student</h3>
+                                        <span class="badge bg-primary">2021-2025</span>
+                                    </div>
+                                    <h4 class="card-subtitle mb-2 text-muted h6">University of the West of England, Bristol</h4>
+                                    <p class="card-text">
+                                        Final year Computer Science student with focus on machine learning and software development. 
+                                        Consistently achieved Dean's List recognition for academic excellence.
+                                    </p>
+                                    <div class="mt-3">
+                                        <span class="badge location-badge me-1 mb-1">Bristol, UK</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+        else if (section == "skills")
+        {
+            <!-- Skills Section -->
+            <section id="skills" class="py-5">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="section-title mb-3">Technical Skills</h2>
+                            <div class="section-divider mb-4"></div>
+                            <p class="lead">An overview of my technical skills</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Software Development -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="skill-icon bg-primary text-white me-3">
+                                            <i class="bi bi-code-square"></i>
+                                        </span>
+                                        <h5 class="card-title mb-0">Software Development</h5>
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>C#, .NET, Blazor</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Python, Django, Flask</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>RESTful API</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Git, CI/CD</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Microservices Architecture</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Data Science & AI -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="skill-icon bg-primary text-white me-3">
+                                            <i class="bi bi-braces"></i>
+                                        </span>
+                                        <h5 class="card-title mb-0">Data Science & AI</h5>
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Machine Learning</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Deep Learning (PyTorch)</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Transformers</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Vector Databases</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Pandas, NumPy, SciPy</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Data Visualisation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Cloud & DevOps -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="skill-icon bg-primary text-white me-3">
+                                            <i class="bi bi-cloud"></i>
+                                        </span>
+                                        <h5 class="card-title mb-0">Cloud & DevOps</h5>
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Azure Cloud Services</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Azure ML</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Docker</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>CI/CD Pipelines</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Azure DevOps</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+else if (section == "projects")
+{
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 section-alt-bg">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title mb-3">Projects</h2>
+                    <div class="section-divider mb-4"></div>
+                    <p class="lead">Key software and data science projects I've worked on</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- CFD Project -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="project-icon bg-primary text-white me-3">
+                                    <i class="bi bi-cpu"></i>
+                                </span>
+                                <h5 class="card-title mb-0">CNN-Transformer for CFD</h5>
+                            </div>
+                            <p class="card-text">
+                                My final year project combines CNN and transformer architectures to speed up 
+                                Computational Fluid Dynamics simulations. The model helps predict how pollution 
+                                moves around buildings in urban areas, making CFD calculations faster while 
+                                keeping good accuracy. The project includes a dashboard for visualising results.
+                            </p>
+                            <div class="mt-3">
+                                <span class="badge bg-primary me-1">PyTorch</span>
+                                <span class="badge bg-primary me-1">Deep Learning</span>
+                                <span class="badge bg-primary me-1">CFD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Insurance Dashboard -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="project-icon bg-primary text-white me-3">
+                                    <i class="bi bi-graph-up"></i>
+                                </span>
+                                <h5 class="card-title mb-0">Insurance Analytics Dashboard</h5>
+                            </div>
+                            <p class="card-text">
+                                Built a dashboard for insurance data using Django and Python. The system 
+                                includes ML models to predict insurance claims, multi-user support with different 
+                                permission levels, and lets users select which prediction model to use for their analysis.
+                            </p>                            <div class="mt-3">
+                                <span class="badge bg-primary me-1">Django</span>
+                                <span class="badge bg-primary me-1">Python</span>
+                                <span class="badge bg-primary me-1">Docker</span>
+                                <span class="badge bg-primary me-1">PyTorch</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vector Database for Documentation -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="project-icon bg-primary text-white me-3">
+                                    <i class="bi bi-robot"></i>
+                                </span>
+                                <h5 class="card-title mb-0">Documentation Assistant</h5>
+                            </div>
+                            <p class="card-text">
+                                Built a documentation chatbot using Azure ML Studio.
+                                The system helps scientists find information in technical docs 
+                                by understanding context and providing relevant answers based on document content.
+                            </p>
+                            <div class="mt-3">
+                                <span class="badge bg-primary me-1">Azure ML</span>
+                                <span class="badge bg-primary me-1">Vector DB</span>
+                                <span class="badge bg-primary me-1">OpenAI API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sign Language Recognition -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="project-icon bg-primary text-white me-3">
+                                    <i class="bi bi-hand-index"></i>
+                                </span>
+                                <h5 class="card-title mb-0">Sign Language Recognition</h5>
+                            </div>
+                            <p class="card-text">
+                                Developed an application that recognises hand signs and converts them to text or 
+                                spoken letters. This university project used computer vision and machine learning 
+                                to detect hand positions and translate them into corresponding letters.
+                            </p>
+                            <div class="mt-3">
+                                <span class="badge bg-primary me-1">Computer Vision</span>
+                                <span class="badge bg-primary me-1">ML</span>
+                                <span class="badge bg-primary me-1">Python</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+        else if (section == "achievements")
+        {
+            <!-- Achievements & Impact Section -->
+            <section id="achievements" class="py-5 section-alt-bg">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="section-title mb-3">Achievements & Impact</h2>
+                            <div class="section-divider mb-4"></div>
+                            <p class="lead">Achievements, contributions and projects</p>
+                        </div>
+                    </div>
+                                                       
+                            <!-- Achievement 1: Vector Database for Documentation -->
+                            <div class="achievement-card">
+                                <div class="d-flex mb-3">
+                                    <div class="achievement-icon">
+                                        <i class="bi bi-robot"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h3 class="achievement-title">Vector Database-Powered AI Assistant</h3>
+                                        <p class="achievement-description text-muted">Industry Project</p>
+                                    </div>
+                                </div>
+                                <p>Designed and implemented a vector database for a context-aware LLM chatbot for technical documentation.</p>
+
+                            
+                            <!-- Achievement 2: Azure ML Deployment -->
+                            <div class="achievement-card">
+                                <div class="d-flex mb-3">
+                                    <div class="achievement-icon">
+                                        <i class="bi bi-cloud-arrow-up"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h3 class="achievement-title">Azure ML Deployment</h3>
+                                        <p class="achievement-description text-muted">Cross-Functional Project</p>
+                                    </div>
+                                </div>
+                                <p>Deployed ML model endpoints on Azure. Implemented CI/CD pipeline that enabled debugging, faster iteration and delivery of new features.</p>
+                            
+                            <!-- Achievement 3: Dean's List -->
+                            <div class="achievement-card">
+                                <div class="d-flex mb-3">
+                                    <div class="achievement-icon">
+                                        <i class="bi bi-award"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h3 class="achievement-title">Dean's List Recognition</h3>
+                                        <p class="achievement-description text-muted">University of the West of England, Bristol</p>
+                                    </div>
+                                </div>
+                                <p>Consistently demonstrated top academic performance across multiple years, maintaining high grades in challenging technical modules like Machine Learning, Advanced Software Development, and Computational Systems. Achieved distinction-level results in key computer science subjects, showcasing strong analytical and problem-solving skills.</p>
+                                <div class="stats-container mt-4">
+                                    <div class="stat-card">
+                                        <div class="stat-number">90</div>
+                                        <div class="stat-title">Machine Learning</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">85</div>
+                                        <div class="stat-title">Operating Systems</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">80</div>
+                                        <div class="stat-title">Advanced Software Development</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }        else if (section == "education")
+        {
+            <section id="education" class="py-5 section-alt-bg">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="section-title mb-3">Education</h2>
+                            <div class="section-divider mb-4"></div>
+                            <p class="lead">Academic background and qualifications</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card education-card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h3 class="card-title h5">University of the West of England, Bristol</h3>
+                                    <p><strong>BSc Computer Science</strong></p>
+                                    <p class="text-muted">2021 - 2025</p>
+                                    <p class="mt-3">
+                                        Final year student with focus on machine learning, software development, and computational systems. 
+                                        Consistently achieved Dean's List recognition for academic excellence.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card education-card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h3 class="card-title h5">Key Modules</h3>
+                                    <ul class="list-unstyled mt-3">
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Machine Learning (90%)</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Operating Systems (85%)</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Advanced Software Development (80%)</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Computational Systems</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Data Structures & Algorithms</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+        else if (section == "contact")
+        {
+            <section id="contact" class="py-5 section">
+                <div class="container">
+                    <h2 class="section-title">Contact Me</h2>
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="card contact-card shadow-sm card-equal-height">
+                                <div class="card-body d-flex flex-column">
+                                    <h3 class="h5 mb-4">Let's Connect</h3>
+                                    
+                                    @if (_formSubmitted)
+                                    {
+                                        @if (_formSubmitSuccess)
+                                        {
+                                            <div class="alert alert-success">
+                                                <i class="bi bi-check-circle me-2"></i> Thank you for your message! I'll get back to you soon.
+                                            </div>
+                                            <button class="btn btn-outline-primary mt-3" @onclick="ResetForm">Send another message</button>
+                                        }
+                                        else
+                                        {
+                                            <div class="alert alert-danger">
+                                                <i class="bi bi-exclamation-triangle me-2"></i> Sorry, there was a problem sending your message. Please try again or contact me directly at contact@farhans.dev.
+                                            </div>
+                                            <button class="btn btn-primary mt-3" @onclick="ResetForm">Try Again</button>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <!-- Replace the EditForm with a regular HTML form that uses FormSubmit -->
+                                        <form action="https://formsubmit.co/farhan.shakeel@icloud.com" method="POST" class="flex-grow-1" @onsubmit="FormSubmitted">
+                                            <!-- FormSubmit configuration -->
+                                            <input type="hidden" name="_subject" value="New portfolio contact from website">
+                                            <input type="hidden" name="_captcha" value="false">
+                                            <input type="hidden" name="_template" value="table">
+                                            <input type="hidden" name="_next" value="https://farhans.dev/#contact">
+                                            
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label">Name</label>
+                                                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" id="email" name="email" class="form-control" placeholder="your.email@example.com" required>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="message" class="form-label">Message</label>
+                                                <textarea id="message" name="message" class="form-control" rows="4" placeholder="How can I help you?" required minlength="10"></textarea>
+                                            </div>
+                                            
+                                            <button type="submit" class="btn btn-primary" disabled="@_isSubmitting">
+                                                @if (_isSubmitting)
+                                                {
+                                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                    <span>Sending...</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Send Message</span>
+                                                }
+                                            </button>
+                                        </form>
+                                    }
+                                    
+                                    <div class="mt-auto text-center">
+                                        <p class="text-muted">I'll respond to your message within 24-48 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card social-card shadow-sm card-equal-height">
+                                <div class="card-body d-flex flex-column justify-content-center">
+                                    <h3 class="h5 mb-4">Find Me Online</h3>                                    <div class="d-flex justify-content-center gap-4 mb-4">
+                                        <a href="https://www.linkedin.com/in/m-shakeel014/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+                                            <i class="bi bi-linkedin fs-3"></i>
+                                        </a>
+                                        <a href="https://github.com/xofvr" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+                                            <i class="bi bi-github fs-3"></i>
+                                        </a>
+                                    </div>
+                                    <p class="mb-4">Email: farhan.shakeel@icloud.com</p>
+                                    <div class="mt-auto text-center">
+                                        <p class="text-muted">I'll respond to your message within 24-48 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+    </ItemContent>
+</Virtualize>
+
+@code {
+    private string[] sections = new[] { "about", "experience", "skills", "projects", "achievements", "education", "contact" };
+    
+    // Contact form properties
+    private bool _isSubmitting = false;
+    private bool _formSubmitted = false;
+    private bool _formSubmitSuccess = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Initialize smooth scrolling
+            await JSRuntime.InvokeVoidAsync("navigationManager.initializeSmoothScroll");
+        }
+    }
+
+    private ValueTask<ItemsProviderResult<string>> GetSectionsAsync(ItemsProviderRequest request)
+    {
+        return ValueTask.FromResult(new ItemsProviderResult<string>(
+            sections.Skip(request.StartIndex).Take(request.Count),
+            sections.Length));
+    }
+    
+    private string GetCategoryIcon(string category)
+    {
+        return category?.ToLower() switch
+        {
+            "languages" => "bi-code-slash",
+            "frameworks" => "bi-braces",
+            "databases" => "bi-hdd",
+            "tools" => "bi-tools",
+            "cloud" => "bi-cloud",
+            "devops" => "bi-gear",
+            "data science" => "bi-bar-chart",
+            _ => "bi-star"
+        };
+    }
+
+    private async Task ToggleTheme()
+    {
+        await JSRuntime.InvokeVoidAsync("themeManager.toggle");
+    }
+    
+    // Simple JavaScript function to handle form submit
+    private void FormSubmitted()
+    {
+        _isSubmitting = true;
+        _formSubmitSuccess = true;
+        StateHasChanged();
+    }
+    
+    private void ResetForm()
+    {
+        _formSubmitted = false;
+        _formSubmitSuccess = false;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Farhan S. - Software Developer Portfolio showcasing skills, projects and professional experience" />
+    <title>Farhan S. - Portfolio</title>
+    <base href="/portfolio/" />
+    
+    <!-- Content Security Policy for GitHub Pages -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.monitor.azure.com https://cdn.jsdelivr.net; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; 
+        img-src 'self' https://*.github.io https://logos-world.net https://upload.wikimedia.org data:; 
+        font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; 
+        connect-src 'self' https://*.github.io https://js.monitor.azure.com https://dc.services.visualstudio.com https://cdn.jsdelivr.net https://fonts.googleapis.com; 
+        worker-src 'self' blob:;" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.webmanifest" />
+    
+    <!-- Preconnect to external resources for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xofvr.github.io/portfolio/">
+    <meta property="og:title" content="Farhan S. - Portfolio">
+    <meta property="og:description" content="Software Developer Portfolio showcasing skills, projects and professional experience">
+    <meta property="og:image" content="https://xofvr.github.io/portfolio/icon-512.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://xofvr.github.io/portfolio/">
+    <meta property="twitter:title" content="Farhan S. - Portfolio">
+    <meta property="twitter:description" content="Software Developer Portfolio showcasing skills, projects and professional experience">
+    <meta property="twitter:image" content="https://xofvr.github.io/portfolio/icon-512.png">
+    
+    <!-- Critical CSS can be inlined here for performance -->
+</head>
+
+<body>
+    <div id="app">
+        <!-- Loading indicator -->
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+            <div style="text-align: center;">
+                <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                <p style="color: #666; margin: 0;">Loading Portfolio...</p>
+            </div>
+        </div>
+        <style>
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <!-- Blazor WebAssembly script -->
+    <script src="_framework/blazor.webassembly.js"></script>
+    
+    <!-- Service Worker registration -->
+    <script>
+        navigator.serviceWorker?.register('./service-worker.js');
+    </script>
+</body>
+
+</html>

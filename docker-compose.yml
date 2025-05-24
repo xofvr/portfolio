@@ -1,0 +1,23 @@
+services:
+  webapp:
+    build:
+      context: ./FarhanS.Portfolio
+      dockerfile: src/Web/Dockerfile
+    platform: linux/arm64  # Optimized for M1 Mac
+    ports:
+      - "8080:80"
+    networks:
+      - portfolio-network
+    # Add restart policy for production-like behavior
+    restart: unless-stopped
+    # Add healthcheck
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  portfolio-network:
+    driver: bridge

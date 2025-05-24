@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Farhan S. - Software Developer Portfolio showcasing skills, projects and professional experience" />
+    <title>Farhan S. - Portfolio</title>
+    <base href="/" />
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.monitor.azure.com https://cdn.jsdelivr.net; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; 
+        img-src 'self' https://*.azurestaticapps.net https://logos-world.net https://upload.wikimedia.org data:; 
+        font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; 
+        connect-src 'self' https://api.farhans-portfolio.com https://*.azurestaticapps.net https://js.monitor.azure.com https://dc.services.visualstudio.com https://cdn.jsdelivr.net https://fonts.googleapis.com; 
+        worker-src 'self' blob:;" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+    <!-- Add preloading for critical resources -->
+    <link rel="preload" href="_framework/blazor.webassembly.js" as="script" />
+    <link rel="preload" href="css/theme.css" as="style" />
+    <link rel="preload" href="css/layout.css" as="style" />
+    <link rel="preload" href="css/app.css" as="style" />
+    <link rel="preload" href="js/theme.js" as="script" />
+    <link rel="preload" href="js/navigation.js" as="script" />
+    <link rel="preload" href="js/service-worker-manager.js" as="script" />
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://js.monitor.azure.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://logos-world.net" crossorigin />
+    <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+    
+    <!-- Standard stylesheets with priority loading order for proper cascading -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/theme.css" /> <!-- Theme variables first -->
+    <link rel="stylesheet" href="css/layout.css" /> <!-- Layout styles second -->
+    <link rel="stylesheet" href="css/app.css" /> <!-- Application styles last -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    
+    <!-- Application Insights snippet -->
+    <script type="text/javascript">
+        try {
+            // Initialize Application Insights
+            !function(config){
+                var appInsights=window.appInsights||function(config){
+                    function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",y=u.createElement(o),b,i;y.src=config.src;y.async=!0;u.getElementsByTagName(o)[0].parentNode.appendChild(y);try{t.cookie=u.cookie}catch(p){}for(t.queue=[],t.version="1.0",b=["Event","Exception","Metric","PageView","Trace","Dependency"];b.length;)r("track"+b.pop());return r("set"+s),r("clear"+s),r(h+a),r(c+a),r(h+v),r(c+v),r("flush"),config.disableExceptionTracking||(b="onerror",r("_"+b),i=e[b],e[b]=function(config,y,u,e,o){var s=i&&i(config,y,u,e,o);return s!==!0&&t["_"+b](config,y,u,e,o),s}),t
+                }({
+                    src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+                    // The SDK is configured through this config object
+                    cfg: {
+                        connectionString: document.appInsightsConnectionString || "", // Will be populated dynamically with environment value
+                        enableDebug: document.location.hostname === "localhost", 
+                        disableFetchTracking: false,
+                        enableCorsCorrelation: true,
+                        enableRequestHeaderTracking: true,
+                        enableResponseHeaderTracking: true,
+                        disableExceptionTracking: false,
+                        autoTrackPageVisitTime: true
+                    }
+                });
+                window.appInsights=appInsights;
+            }();
+        } catch (e) {
+            console.log('Application Insights initialization skipped');
+        }
+    </script>
+    
+    <!-- Theme JavaScript - loaded early for fast theme switching -->
+    <script src="js/theme.js"></script>
+
+    <!-- Meta tag for cache control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+</head>
+
+<body>
+    <div id="app">
+        <!-- Improved loading spinner -->
+        <div class="loading-container">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Loading awesome content...</p>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui" style="display: none;">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    
+    <!-- Add defer to improve page load performance -->
+    <script src="_framework/blazor.webassembly.js" defer></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <!-- Navigation script - loaded after main app -->
+    <script src="js/navigation.js" defer></script>
+    
+    <!-- Service worker manager script with cache busting parameter -->
+    <script src="js/service-worker-manager.js?v=1.0.5" defer></script>
+    
+    <script>
+        // Handle Blazor errors gracefully
+        window.addEventListener('unhandledrejection', function(event) {
+            console.log('Unhandled Promise Rejection:', event.reason);
+            // Prevent the error UI from showing in some cases
+            if (event.reason && event.reason.message && 
+                event.reason.message.includes('subscriber to the content with the given section ID')) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+        
+        // Initialize error handling on page load
+        window.addEventListener('load', function() {
+            // Hide the Blazor error UI if it appears due to known issues
+            const errorUI = document.getElementById('blazor-error-ui');
+            if (errorUI) {
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.attributeName === 'style' && 
+                            errorUI.style.display === 'block') {
+                            // If error UI is shown but app is still functioning, hide it
+                            console.log('Handling Blazor error gracefully...');
+                            setTimeout(() => {
+                                if (document.querySelector('main') && document.querySelector('main').children.length > 0) {
+                                    errorUI.style.display = 'none';
+                                }
+                            }, 3000);
+                        }
+                    });
+                });
+                
+                observer.observe(errorUI, { attributes: true });
+            }
+            
+            // Register global helper for manual cache clearing
+            window.clearAppCache = function() {
+                if (window.swManager && window.swManager.clearCache) {
+                    window.swManager.clearCache();
+                    return true;
+                }
+                return false;
+            };
+            
+            // Check for updates on load
+            window.checkForUpdates = function() {
+                if (window.swManager && window.swManager.checkForUpdates) {
+                    window.swManager.checkForUpdates();
+                    return true;
+                }
+                return false;
+            };
+            
+            // Apply updates if available
+            window.applyUpdate = function() {
+                if (window.swManager && window.swManager.applyUpdate) {
+                    window.swManager.applyUpdate();
+                    return true;
+                }
+                return false;
+            };
+        });
+    </script>
+    
+    <!-- Configure Application Insights using the connection string from appsettings -->
+    <script>
+        (async function () {
+            try {
+                // Fetch the connection string from appsettings based on environment
+                let response = await fetch('appsettings.json');
+                let settings = await response.json();
+                
+                // Look for environment-specific settings first (if available)
+                try {
+                    // Try to detect environment and load the corresponding settings file
+                    let environmentResponse = await fetch('appsettings.' + (window.location.hostname === 'localhost' ? 'Development' : 
+                                                          window.location.hostname.includes('staging') ? 'Staging' : 'Production') + '.json');
+                    if (environmentResponse.ok) {
+                        let envSettings = await environmentResponse.json();
+                        // Override base settings with environment-specific ones
+                        settings = { ...settings, ...envSettings };
+                    }
+                } catch (e) {
+                    console.log('No environment-specific settings found, using default.');
+                }
+                
+                // Set the connection string for Application Insights
+                if (settings && settings.ApplicationInsights && settings.ApplicationInsights.ConnectionString) {
+                    document.appInsightsConnectionString = settings.ApplicationInsights.ConnectionString;
+                }
+                
+                // Configure the API URL if available
+                if (settings && settings.ApiSettings && settings.ApiSettings.BaseUrl) {
+                    window.apiBaseUrl = settings.ApiSettings.BaseUrl;
+                    console.log('API Base URL:', window.apiBaseUrl);
+                }
+                
+                // Log database connection status if available
+                if (settings && settings.Database && settings.Database.ConnectionAvailable !== undefined) {
+                    console.log('Database connection available:', settings.Database.ConnectionAvailable);
+                }
+            } catch (e) {
+                console.error('Error loading application settings', e);
+            }
+        })();
+    </script>
+</body>
+
+</html>
