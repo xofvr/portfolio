@@ -76,9 +76,40 @@
             console.log('Application Insights initialization skipped');
         }
     </script>
-    
-    <!-- Theme JavaScript - loaded early for fast theme switching -->
+      <!-- Theme JavaScript - loaded early for fast theme switching -->
     <script src="js/theme.js"></script>
+    
+    <!-- Initialize JavaScript managers immediately to prevent timing issues -->
+    <script>
+        // Ensure themeManager and navigationManager are available immediately
+        window.themeManager = window.themeManager || {
+            isDarkMode: function() {
+                return document.documentElement.getAttribute('data-theme') === 'dark';
+            },
+            toggle: function() {
+                console.log('Theme manager not fully loaded yet');
+            },
+            getTheme: function() {
+                return document.documentElement.getAttribute('data-theme') || 'dark';
+            }
+        };
+        
+        window.navigationManager = window.navigationManager || {
+            initializeSmoothScroll: function() {
+                console.log('Navigation manager not fully loaded yet');
+            },
+            registerIntersectionObservers: function() {
+                console.log('Navigation manager not fully loaded yet');
+            },
+            setupNavbarAnimation: function() {
+                console.log('Navigation manager not fully loaded yet');
+            }
+        };
+        
+        window.scrollToSection = window.scrollToSection || function(sectionId) {
+            console.log('Scroll function not fully loaded yet');
+        };
+    </script>
 
     <!-- Meta tag for cache control -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />

@@ -27,12 +27,33 @@
     <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
     
+    <!-- Add preloading for critical resources -->
+    <link rel="preload" href="_framework/blazor.webassembly.js" as="script" />
+    <link rel="preload" href="css/theme.css" as="style" />
+    <link rel="preload" href="css/layout.css" as="style" />
+    <link rel="preload" href="css/app.css" as="style" />
+    <link rel="preload" href="js/theme.js" as="script" />
+    <link rel="preload" href="js/navigation.js" as="script" />
+    <link rel="preload" href="js/service-worker-manager.js" as="script" />
+    
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.webmanifest" />
     
     <!-- Preconnect to external resources for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://js.monitor.azure.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://logos-world.net" crossorigin />
+    <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+    
+    <!-- Standard stylesheets with priority loading order for proper cascading -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/theme.css" /> <!-- Theme variables first -->
+    <link rel="stylesheet" href="css/layout.css" /> <!-- Layout styles second -->
+    <link rel="stylesheet" href="css/app.css" /> <!-- Application styles last -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -48,43 +69,208 @@
     <meta property="twitter:description" content="Software Developer Portfolio showcasing skills, projects and professional experience">
     <meta property="twitter:image" content="https://xofvr.github.io/portfolio/icon-512.png">
     
-    <!-- Critical CSS can be inlined here for performance -->
+    <!-- Application Insights snippet -->
+    <script type="text/javascript">
+        try {
+            // Initialize Application Insights
+            !function(config){
+                var appInsights=window.appInsights||function(config){
+                    function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",y=u.createElement(o),b,i;y.src=config.src;y.async=!0;u.getElementsByTagName(o)[0].parentNode.appendChild(y);try{t.cookie=u.cookie}catch(p){}for(t.queue=[],t.version="1.0",b=["Event","Exception","Metric","PageView","Trace","Dependency"];b.length;)r("track"+b.pop());return r("set"+s),r("clear"+s),r(h+a),r(c+a),r(h+v),r(c+v),r("flush"),config.disableExceptionTracking||(b="onerror",r("_"+b),i=e[b],e[b]=function(config,y,u,e,o){var s=i&&i(config,y,u,e,o);return s!==!0&&t["_"+b](config,y,u,e,o),s}),t
+                }({
+                    src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+                    // The SDK is configured through this config object
+                    cfg: {
+                        connectionString: document.appInsightsConnectionString || "", // Will be populated dynamically with environment value
+                        enableDebug: false, // Disable debug in production
+                        disableFetchTracking: false,
+                        enableCorsCorrelation: true,
+                        enableRequestHeaderTracking: true,
+                        enableResponseHeaderTracking: true,
+                        disableExceptionTracking: false,
+                        autoTrackPageVisitTime: true
+                    }
+                });
+                window.appInsights=appInsights;
+            }();
+        } catch (e) {
+            console.log('Application Insights initialization skipped');
+        }
+    </script>
+    
+    <!-- Theme JavaScript - loaded early for fast theme switching -->
+    <script src="js/theme.js"></script>
+    
+    <!-- Initialize JavaScript managers immediately to prevent timing issues -->
+    <script>
+        // Ensure themeManager and navigationManager are available immediately
+        window.themeManager = window.themeManager || {
+            isDarkMode: function() {
+                return document.documentElement.getAttribute('data-theme') === 'dark';
+            },
+            toggle: function() {
+                console.log('Theme manager not fully loaded yet');
+            },
+            getTheme: function() {
+                return document.documentElement.getAttribute('data-theme') || 'dark';
+            }
+        };
+        
+        window.navigationManager = window.navigationManager || {
+            initializeSmoothScroll: function() {
+                console.log('Navigation manager not fully loaded yet');
+            },
+            registerIntersectionObservers: function() {
+                console.log('Navigation manager not fully loaded yet');
+            },
+            setupNavbarAnimation: function() {
+                console.log('Navigation manager not fully loaded yet');
+            }
+        };
+        
+        window.scrollToSection = window.scrollToSection || function(sectionId) {
+            console.log('Scroll function not fully loaded yet');
+        };
+    </script>
+
+    <!-- Meta tag for cache control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 </head>
 
 <body>
     <div id="app">
-        <!-- Loading indicator -->
-        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-            <div style="text-align: center;">
-                <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
-                <p style="color: #666; margin: 0;">Loading Portfolio...</p>
+        <!-- Improved loading spinner -->
+        <div class="loading-container">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
+            <p class="mt-2">Loading awesome content...</p>
         </div>
-        <style>
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-        </style>
     </div>
 
-    <div id="blazor-error-ui">
-        <environment include="Staging,Production">
-            An error has occurred. This application may no longer respond until reloaded.
-        </environment>
-        <environment include="Development">
-            An unhandled exception has occurred. See browser dev tools for details.
-        </environment>
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+    <div id="blazor-error-ui" style="display: none;">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
     </div>
-
-    <!-- Blazor WebAssembly script -->
-    <script src="_framework/blazor.webassembly.js"></script>
     
-    <!-- Service Worker registration -->
+    <!-- Add defer to improve page load performance -->
+    <script src="_framework/blazor.webassembly.js" defer></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <!-- Navigation script - loaded after main app -->
+    <script src="js/navigation.js" defer></script>
+    
+    <!-- Service worker manager script with cache busting parameter -->
+    <script src="js/service-worker-manager.js?v=1.0.5" defer></script>
+    
     <script>
-        navigator.serviceWorker?.register('./service-worker.js');
+        // Handle Blazor errors gracefully
+        window.addEventListener('unhandledrejection', function(event) {
+            console.log('Unhandled Promise Rejection:', event.reason);
+            // Prevent the error UI from showing in some cases
+            if (event.reason && event.reason.message && 
+                event.reason.message.includes('subscriber to the content with the given section ID')) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+        
+        // Initialize error handling on page load
+        window.addEventListener('load', function() {
+            // Hide the Blazor error UI if it appears due to known issues
+            const errorUI = document.getElementById('blazor-error-ui');
+            if (errorUI) {
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.attributeName === 'style' && 
+                            errorUI.style.display === 'block') {
+                            // If error UI is shown but app is still functioning, hide it
+                            console.log('Handling Blazor error gracefully...');
+                            setTimeout(() => {
+                                if (document.querySelector('main') && document.querySelector('main').children.length > 0) {
+                                    errorUI.style.display = 'none';
+                                }
+                            }, 3000);
+                        }
+                    });
+                });
+                
+                observer.observe(errorUI, { attributes: true });
+            }
+            
+            // Register global helper for manual cache clearing
+            window.clearAppCache = function() {
+                if (window.swManager && window.swManager.clearCache) {
+                    window.swManager.clearCache();
+                    return true;
+                }
+                return false;
+            };
+            
+            // Check for updates on load
+            window.checkForUpdates = function() {
+                if (window.swManager && window.swManager.checkForUpdates) {
+                    window.swManager.checkForUpdates();
+                    return true;
+                }
+                return false;
+            };
+            
+            // Apply updates if available
+            window.applyUpdate = function() {
+                if (window.swManager && window.swManager.applyUpdate) {
+                    window.swManager.applyUpdate();
+                    return true;
+                }
+                return false;
+            };
+        });
+    </script>
+    
+    <!-- Configure Application Insights using the connection string from appsettings -->
+    <script>
+        (async function () {
+            try {
+                // Fetch the connection string from appsettings based on environment
+                let response = await fetch('appsettings.json');
+                let settings = await response.json();
+                
+                // Look for environment-specific settings first (if available)
+                try {
+                    // Try to detect environment and load the corresponding settings file
+                    let environmentResponse = await fetch('appsettings.Production.json');
+                    if (environmentResponse.ok) {
+                        let envSettings = await environmentResponse.json();
+                        // Override base settings with environment-specific ones
+                        settings = { ...settings, ...envSettings };
+                    }
+                } catch (e) {
+                    console.log('No environment-specific settings found, using default.');
+                }
+                
+                // Set the connection string for Application Insights
+                if (settings && settings.ApplicationInsights && settings.ApplicationInsights.ConnectionString) {
+                    document.appInsightsConnectionString = settings.ApplicationInsights.ConnectionString;
+                }
+                
+                // Configure the API URL if available
+                if (settings && settings.ApiSettings && settings.ApiSettings.BaseUrl) {
+                    window.apiBaseUrl = settings.ApiSettings.BaseUrl;
+                    console.log('API Base URL:', window.apiBaseUrl);
+                }
+                
+                // Log database connection status if available
+                if (settings && settings.Database && settings.Database.ConnectionAvailable !== undefined) {
+                    console.log('Database connection available:', settings.Database.ConnectionAvailable);
+                }
+            } catch (e) {
+                console.error('Error loading application settings', e);
+            }
+        })();
     </script>
 </body>
 
