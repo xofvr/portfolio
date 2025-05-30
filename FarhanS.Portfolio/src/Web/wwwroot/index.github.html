@@ -23,9 +23,9 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="favicon.png">
     
     <!-- Add preloading for critical resources -->
     <link rel="preload" href="_framework/blazor.webassembly.js" as="script" />
@@ -34,7 +34,6 @@
     <link rel="preload" href="css/app.css" as="style" />
     <link rel="preload" href="js/theme.js" as="script" />
     <link rel="preload" href="js/navigation.js" as="script" />
-    <link rel="preload" href="js/service-worker-manager.js" as="script" />
     
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.webmanifest" />
@@ -60,14 +59,14 @@
     <meta property="og:url" content="https://xofvr.github.io/portfolio/">
     <meta property="og:title" content="Farhan S. - Portfolio">
     <meta property="og:description" content="Software Developer Portfolio showcasing skills, projects and professional experience">
-    <meta property="og:image" content="https://xofvr.github.io/portfolio/icon-512.png">
+    <meta property="og:image" content="https://xofvr.github.io/portfolio/favicon.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://xofvr.github.io/portfolio/">
     <meta property="twitter:title" content="Farhan S. - Portfolio">
     <meta property="twitter:description" content="Software Developer Portfolio showcasing skills, projects and professional experience">
-    <meta property="twitter:image" content="https://xofvr.github.io/portfolio/icon-512.png">
+    <meta property="twitter:image" content="https://xofvr.github.io/portfolio/favicon.png">
     
     <!-- Application Insights snippet -->
     <script type="text/javascript">
@@ -131,11 +130,6 @@
             console.log('Scroll function not fully loaded yet');
         };
     </script>
-
-    <!-- Meta tag for cache control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
 </head>
 
 <body>
@@ -164,8 +158,7 @@
     <!-- Navigation script - loaded after main app -->
     <script src="js/navigation.js" defer></script>
     
-    <!-- Service worker manager script with cache busting parameter -->
-    <script src="js/service-worker-manager.js?v=1.0.5" defer></script>
+
     
     <script>
         // Handle Blazor errors gracefully
@@ -201,33 +194,6 @@
                 
                 observer.observe(errorUI, { attributes: true });
             }
-            
-            // Register global helper for manual cache clearing
-            window.clearAppCache = function() {
-                if (window.swManager && window.swManager.clearCache) {
-                    window.swManager.clearCache();
-                    return true;
-                }
-                return false;
-            };
-            
-            // Check for updates on load
-            window.checkForUpdates = function() {
-                if (window.swManager && window.swManager.checkForUpdates) {
-                    window.swManager.checkForUpdates();
-                    return true;
-                }
-                return false;
-            };
-            
-            // Apply updates if available
-            window.applyUpdate = function() {
-                if (window.swManager && window.swManager.applyUpdate) {
-                    window.swManager.applyUpdate();
-                    return true;
-                }
-                return false;
-            };
         });
     </script>
     

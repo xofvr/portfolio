@@ -28,10 +28,8 @@
     <link rel="preload" href="_framework/blazor.webassembly.js" as="script" />
     <link rel="preload" href="css/theme.css" as="style" />
     <link rel="preload" href="css/layout.css" as="style" />
-    <link rel="preload" href="css/app.css" as="style" />
-    <link rel="preload" href="js/theme.js" as="script" />
+    <link rel="preload" href="css/app.css" as="style" />    <link rel="preload" href="js/theme.js" as="script" />
     <link rel="preload" href="js/navigation.js" as="script" />
-    <link rel="preload" href="js/service-worker-manager.js" as="script" />
     
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -142,9 +140,7 @@
     
     <!-- Navigation script - loaded after main app -->
     <script src="js/navigation.js" defer></script>
-    
-    <!-- Service worker manager script with cache busting parameter -->
-    <script src="js/service-worker-manager.js?v=1.0.5" defer></script>
+  
     
     <script>
         // Handle Blazor errors gracefully
@@ -178,35 +174,7 @@
                     });
                 });
                 
-                observer.observe(errorUI, { attributes: true });
-            }
-            
-            // Register global helper for manual cache clearing
-            window.clearAppCache = function() {
-                if (window.swManager && window.swManager.clearCache) {
-                    window.swManager.clearCache();
-                    return true;
-                }
-                return false;
-            };
-            
-            // Check for updates on load
-            window.checkForUpdates = function() {
-                if (window.swManager && window.swManager.checkForUpdates) {
-                    window.swManager.checkForUpdates();
-                    return true;
-                }
-                return false;
-            };
-            
-            // Apply updates if available
-            window.applyUpdate = function() {
-                if (window.swManager && window.swManager.applyUpdate) {
-                    window.swManager.applyUpdate();
-                    return true;
-                }
-                return false;
-            };
+                observer.observe(errorUI, { attributes: true });            }
         });
     </script>
     

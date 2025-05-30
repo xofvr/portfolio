@@ -445,62 +445,28 @@ else if (section == "projects")
                             <div class="card contact-card shadow-sm card-equal-height">
                                 <div class="card-body d-flex flex-column">
                                     <h3 class="h5 mb-4">Let's Connect</h3>
-                                    
-                                    @if (_formSubmitted)
-                                    {
-                                        @if (_formSubmitSuccess)
-                                        {
-                                            <div class="alert alert-success">
-                                                <i class="bi bi-check-circle me-2"></i> Thank you for your message! I'll get back to you soon.
-                                            </div>
-                                            <button class="btn btn-outline-primary mt-3" @onclick="ResetForm">Send another message</button>
-                                        }
-                                        else
-                                        {
-                                            <div class="alert alert-danger">
-                                                <i class="bi bi-exclamation-triangle me-2"></i> Sorry, there was a problem sending your message. Please try again or contact me directly at contact@farhans.dev.
-                                            </div>
-                                            <button class="btn btn-primary mt-3" @onclick="ResetForm">Try Again</button>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <!-- Replace the EditForm with a regular HTML form that uses FormSubmit -->
-                                        <form action="https://formsubmit.co/farhan.shakeel@icloud.com" method="POST" class="flex-grow-1" @onsubmit="FormSubmitted">
-                                            <!-- FormSubmit configuration -->
-                                            <input type="hidden" name="_subject" value="New portfolio contact from website">
-                                            <input type="hidden" name="_captcha" value="false">
-                                            <input type="hidden" name="_template" value="table">
-                                            <input type="hidden" name="_next" value="https://farhans.dev/#contact">
-                                            
-                                            <div class="mb-3">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
-                                            </div>
-                                            
-                                            <div class="mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" id="email" name="email" class="form-control" placeholder="your.email@example.com" required>
-                                            </div>
-                                            
-                                            <div class="mb-3">
-                                                <label for="message" class="form-label">Message</label>
-                                                <textarea id="message" name="message" class="form-control" rows="4" placeholder="How can I help you?" required minlength="10"></textarea>
-                                            </div>
-                                            
-                                            <button type="submit" class="btn btn-primary" disabled="@_isSubmitting">
-                                                @if (_isSubmitting)
-                                                {
-                                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                                    <span>Sending...</span>
-                                                }
-                                                else
-                                                {
-                                                    <span>Send Message</span>
-                                                }
-                                            </button>
-                                        </form>
-                                    }
+                                      <!-- HTML form that submits directly to Formspree -->
+                                    <form action="https://formspree.io/f/movwadkk" method="POST" class="flex-grow-1">
+                                        <input type="hidden" name="_subject" value="New portfolio contact from website">
+                                        <input type="hidden" name="_captcha" value="false">
+                                        <input type="hidden" name="_template" value="table">
+                                        <input type="hidden" name="_next" value="https://farhans.dev/#contact">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Name</label>
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="your.email@example.com" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message" class="form-label">Message</label>
+                                            <textarea id="message" name="message" class="form-control" rows="4" placeholder="How can I help you?" required minlength="10"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">
+                                            <span>Send Message</span>
+                                        </button>
+                                    </form>
                                     
                                     <div class="mt-auto text-center">
                                         <p class="text-muted">I'll respond to your message within 24-48 hours</p>
@@ -535,11 +501,6 @@ else if (section == "projects")
 
 @code {
     private string[] sections = new[] { "about", "experience", "skills", "projects", "achievements", "education", "contact" };
-    
-    // Contact form properties
-    private bool _isSubmitting = false;
-    private bool _formSubmitted = false;
-    private bool _formSubmitSuccess = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -575,20 +536,5 @@ else if (section == "projects")
     private async Task ToggleTheme()
     {
         await JSRuntime.InvokeVoidAsync("themeManager.toggle");
-    }
-    
-    // Simple JavaScript function to handle form submit
-    private void FormSubmitted()
-    {
-        _isSubmitting = true;
-        _formSubmitSuccess = true;
-        StateHasChanged();
-    }
-    
-    private void ResetForm()
-    {
-        _formSubmitted = false;
-        _formSubmitSuccess = false;
-        StateHasChanged();
     }
 }
