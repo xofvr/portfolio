@@ -30,7 +30,9 @@ const ALLOWED_EXTERNAL_DOMAINS = [
   'fonts.googleapis.com',
   'fonts.gstatic.com',
   'logos-world.net',
-  'upload.wikimedia.org'
+  'upload.wikimedia.org',
+  'js.monitor.azure.com',
+  'api.farhans-portfolio.com'
 ];
 
 // Install event - precache all essential assets
@@ -121,9 +123,11 @@ self.addEventListener('fetch', event => {
     event.respondWith(fetch(event.request));
     return;
   }
-    // Define API endpoints for special handling
+  
+  // Define API endpoints for special handling
   const apiEndpoints = [
-    // No external API endpoints for GitHub Pages deployment
+    'api.farhans-portfolio.com',
+    'js.monitor.azure.com'
   ];
   
   // Define external resource domains

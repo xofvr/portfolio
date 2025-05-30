@@ -14,18 +14,18 @@
     
     <!-- Content Security Policy for GitHub Pages -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.monitor.azure.com https://cdn.jsdelivr.net; 
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; 
         img-src 'self' https://*.github.io https://logos-world.net https://upload.wikimedia.org data:; 
         font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; 
-        connect-src 'self' https://*.github.io https://js.monitor.azure.com https://dc.services.visualstudio.com https://cdn.jsdelivr.net https://fonts.googleapis.com; 
+        connect-src 'self' https://*.github.io https://cdn.jsdelivr.net https://fonts.googleapis.com; 
         worker-src 'self' blob:;" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+    <link rel="icon" type="image/png" href="favicon.png?v=1748620273" />
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon.png?v=1748620273">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png?v=1748620273">
+    <link rel="apple-touch-icon" sizes="512x512" href="favicon.png?v=1748620273">
     
     <!-- Add preloading for critical resources -->
     <link rel="preload" href="_framework/blazor.webassembly.js" as="script" />
@@ -34,14 +34,12 @@
     <link rel="preload" href="css/app.css" as="style" />
     <link rel="preload" href="js/theme.js" as="script" />
     <link rel="preload" href="js/navigation.js" as="script" />
-    <link rel="preload" href="js/service-worker-manager.js" as="script" />
     
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.webmanifest" />
     
     <!-- Preconnect to external resources for performance -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="preconnect" href="https://js.monitor.azure.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://logos-world.net" crossorigin />
@@ -60,42 +58,16 @@
     <meta property="og:url" content="https://xofvr.github.io/portfolio/">
     <meta property="og:title" content="Farhan S. - Portfolio">
     <meta property="og:description" content="Software Developer Portfolio showcasing skills, projects and professional experience">
-    <meta property="og:image" content="https://xofvr.github.io/portfolio/icon-512.png">
+    <meta property="og:image" content="https://xofvr.github.io/portfolio/favicon.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://xofvr.github.io/portfolio/">
     <meta property="twitter:title" content="Farhan S. - Portfolio">
     <meta property="twitter:description" content="Software Developer Portfolio showcasing skills, projects and professional experience">
-    <meta property="twitter:image" content="https://xofvr.github.io/portfolio/icon-512.png">
+    <meta property="twitter:image" content="https://xofvr.github.io/portfolio/favicon.png">
     
-    <!-- Application Insights snippet -->
-    <script type="text/javascript">
-        try {
-            // Initialize Application Insights
-            !function(config){
-                var appInsights=window.appInsights||function(config){
-                    function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",y=u.createElement(o),b,i;y.src=config.src;y.async=!0;u.getElementsByTagName(o)[0].parentNode.appendChild(y);try{t.cookie=u.cookie}catch(p){}for(t.queue=[],t.version="1.0",b=["Event","Exception","Metric","PageView","Trace","Dependency"];b.length;)r("track"+b.pop());return r("set"+s),r("clear"+s),r(h+a),r(c+a),r(h+v),r(c+v),r("flush"),config.disableExceptionTracking||(b="onerror",r("_"+b),i=e[b],e[b]=function(config,y,u,e,o){var s=i&&i(config,y,u,e,o);return s!==!0&&t["_"+b](config,y,u,e,o),s}),t
-                }({
-                    src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
-                    // The SDK is configured through this config object
-                    cfg: {
-                        connectionString: document.appInsightsConnectionString || "", // Will be populated dynamically with environment value
-                        enableDebug: false, // Disable debug in production
-                        disableFetchTracking: false,
-                        enableCorsCorrelation: true,
-                        enableRequestHeaderTracking: true,
-                        enableResponseHeaderTracking: true,
-                        disableExceptionTracking: false,
-                        autoTrackPageVisitTime: true
-                    }
-                });
-                window.appInsights=appInsights;
-            }();
-        } catch (e) {
-            console.log('Application Insights initialization skipped');
-        }
-    </script>
+    <!-- Application Insights removed for GitHub Pages deployment -->
     
     <!-- Theme JavaScript - loaded early for fast theme switching -->
     <script src="js/theme.js"></script>
@@ -131,11 +103,6 @@
             console.log('Scroll function not fully loaded yet');
         };
     </script>
-
-    <!-- Meta tag for cache control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
 </head>
 
 <body>
@@ -164,8 +131,22 @@
     <!-- Navigation script - loaded after main app -->
     <script src="js/navigation.js" defer></script>
     
-    <!-- Service worker manager script with cache busting parameter -->
-    <script src="js/service-worker-manager.js?v=1.0.5" defer></script>
+    <!-- Simple service worker registration for GitHub Pages -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/portfolio/service-worker-simple.js')
+                    .then(function(registration) {
+                        console.log('Simple Service Worker registered');
+                    })
+                    .catch(function(error) {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+    
+
     
     <script>
         // Handle Blazor errors gracefully
@@ -201,74 +182,21 @@
                 
                 observer.observe(errorUI, { attributes: true });
             }
-            
-            // Register global helper for manual cache clearing
-            window.clearAppCache = function() {
-                if (window.swManager && window.swManager.clearCache) {
-                    window.swManager.clearCache();
-                    return true;
-                }
-                return false;
-            };
-            
-            // Check for updates on load
-            window.checkForUpdates = function() {
-                if (window.swManager && window.swManager.checkForUpdates) {
-                    window.swManager.checkForUpdates();
-                    return true;
-                }
-                return false;
-            };
-            
-            // Apply updates if available
-            window.applyUpdate = function() {
-                if (window.swManager && window.swManager.applyUpdate) {
-                    window.swManager.applyUpdate();
-                    return true;
-                }
-                return false;
-            };
         });
     </script>
     
-    <!-- Configure Application Insights using the connection string from appsettings -->
+    <!-- Configuration loading script simplified for GitHub Pages -->
     <script>
         (async function () {
             try {
-                // Fetch the connection string from appsettings based on environment
+                // Simple configuration loading for static hosting
                 let response = await fetch('appsettings.json');
                 let settings = await response.json();
                 
-                // Look for environment-specific settings first (if available)
-                try {
-                    // Try to detect environment and load the corresponding settings file
-                    let environmentResponse = await fetch('appsettings.Production.json');
-                    if (environmentResponse.ok) {
-                        let envSettings = await environmentResponse.json();
-                        // Override base settings with environment-specific ones
-                        settings = { ...settings, ...envSettings };
-                    }
-                } catch (e) {
-                    console.log('No environment-specific settings found, using default.');
-                }
-                
-                // Set the connection string for Application Insights
-                if (settings && settings.ApplicationInsights && settings.ApplicationInsights.ConnectionString) {
-                    document.appInsightsConnectionString = settings.ApplicationInsights.ConnectionString;
-                }
-                
-                // Configure the API URL if available
-                if (settings && settings.ApiSettings && settings.ApiSettings.BaseUrl) {
-                    window.apiBaseUrl = settings.ApiSettings.BaseUrl;
-                    console.log('API Base URL:', window.apiBaseUrl);
-                }
-                
-                // Log database connection status if available
-                if (settings && settings.Database && settings.Database.ConnectionAvailable !== undefined) {
-                    console.log('Database connection available:', settings.Database.ConnectionAvailable);
-                }
+                // Log that we've loaded settings
+                console.log('Application settings loaded for GitHub Pages');
             } catch (e) {
-                console.error('Error loading application settings', e);
+                console.log('No application settings found - using defaults for GitHub Pages');
             }
         })();
     </script>
